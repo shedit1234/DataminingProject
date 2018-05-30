@@ -135,70 +135,20 @@ testData <- fread("testData.tsv")
 ## General cleaning
 
 trainData$review <- textcleaner(trainData$review)
-#trainData$review <- removeWords(trainData$review, words = c(stopwords("en")))
-trainData$sentiment <- as.logical(trainData$sentiment)
+trainData$review <- removeWords(trainData$review, words = c(stopwords("en"), "br"))
+trainData$sentiment <- as.factor(trainData$sentiment == 1)
 
 ## testsplit 
 trainData.train <- trainData[1:round(nrow(trainData)*0.75)]
 trainData.test <- trainData[round(nrow(trainData)*0.75+1):nrow(trainData)]
 
 
-
-
-
-
-
-## spark 
-# sc <- spark_connect(master = "local", version = "2.0.0")
-#   system.time(copy_to(sc, trainData, overwrite = TRUE))
-# # Imports 
-# trainData <- tbl(sc, "trainData")
-
-
 ## DocumentMatrix conversions 
 trainData.DTM.test <- dtmconverter(trainData.test)
+
 trainData.DTM.test <- removeSparseTerms(trainData.DTM.test, sparse = 0.99)
 
 
 trainData.Matrix.test <- as.matrix(trainData.DTM.test)
 
-
-
-## Random stuff not neccesary I think 
-
-# trainData.DTM.train <- dtmconverter(trainData.train)
-# trainData.Matrix.train <- as.matrix(trainData.DTM.train)
-# 
-# 
-# sort(rowSums(as.matrix(trainData.DTM)))
-
-# #Negative reviews
-# trainDataN.TDM <- tdmconverter(trainDataN)
-# trainDataN.TDM <- removeSparseTerms(trainDataN.TDM, sparse = 0.95)
-# trainDataN.Matrix <- as.matrix(trainDataN.TDM)
-# Negativeterm_frequency<- sort(rowSums(trainDataN.Matrix), decreasing= TRUE)
-# 
-# barplot(Negativeterm_frequency[c(1:30)], col = "tan", las = 2)
-# #positive reviews
-# 
-# trainDataP.TDM <- tdmconverter(trainDataP)
-# 
-# trainDataMatrix <- as.matrix(trainData.TDM)
-
-
-
-
-
-# vocab <-  trainData %>% 
-#           tokenize("ngrams", n =2) %>% 
-#           select(words, sentiment) 
-#           
-#  
-# vocab_counts <- vocab %>% 
-#                 separate(words, c("word1", "word2")) %>% 
-#                 select(word1, word2, sentiment) %>%
-#                 count(word1, word2, sort = TRUE)
-# vocab_counts
-# ##########################################################################
-# 
 

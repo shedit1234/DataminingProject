@@ -10,7 +10,7 @@ library(naivebayes)
 
 #barGraphAnalysis(trainData, "ngrams", n = 2)
 
-#bigramRelationPlot(trainData)
+bigramRelationPlot(trainData)
 
 ###############################################
 
@@ -18,6 +18,7 @@ library(naivebayes)
 
 classifier = naive_bayes(t(trainData.Matrix.test[,1:5000]), trainData.test$sentiment[1:5000])
 
+#classifier2 = randomForest(t(trainData.Matrix.test[,1:5000]), factor(trainData.test$sentiment[1:5000]))
 predicted = predict(classifier, t(trainData.Matrix.test[,5001:6250]))
 
 #trainData[5001:6250, -3]
