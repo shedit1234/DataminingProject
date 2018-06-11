@@ -1,20 +1,13 @@
+# Prediction by classificationn with sparseTerms 0.99 and TfIdf weighting Acc: 0.62
 source("/Users/Shedit/Downloads/06-DATA-ANALYSIS-AND-MINING-part2-semester/Individual assignment Data mining/DataminingMovies/FunctionsandImports.R")
-
-
-# Prediction by classificationn with sparseTerms 0.99 and TfIdf weighting Acc: 0.74
-
-#install.packages("naivebayes")
 library(naivebayes)
-
 #### Graphs #########
 
 #barGraphAnalysis(trainData, "ngrams", n = 2)
 
 bigramRelationPlot(trainData)
 
-###############################################
-
-#### Prediction stufff 
+#### Prediction ####
 
 classifier = naive_bayes(t(trainData.Matrix.test[,1:5000]), trainData.test$sentiment[1:5000])
 

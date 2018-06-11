@@ -10,8 +10,8 @@
 # install.packges("data.table")
 # install.packges("tm")
 # install.packges("ggplot2")
-#install.packages("sparklyr")
-
+# install.packages("sparklyr")
+# install.packages("naivebayes")
 
 library(sparklyr)
 library(purrr)
@@ -21,7 +21,6 @@ library(tm)
 library(tidytext)
 library(dplyr)
 library(ggplot2)
-#library(qdap)
 library(igraph)
 library(ggraph)
 library(RWeka)
