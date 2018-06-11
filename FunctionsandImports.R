@@ -1,3 +1,4 @@
+#### Packages ####
 # install.packages("RWeka")
 # install.packages("rJava")
 # install.packages("tidytext")
@@ -27,7 +28,7 @@ library(RWeka)
 library(rJava)
 
 t1 <- Sys.time()
-####### Functions #########
+#### Functions #########
 
 textcleaner <- function(col) {
   col <- col %>% removePunctuation() %>%
@@ -124,7 +125,7 @@ tokenize <- function(df, tokenstr,  number = NULL){
 
 BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
 
-#####Imports########
+#### Imports ########
 
 trainData <- fread("labeledTrainData.tsv")
 unlabeledALLData <- fread("unlabeledTrainData.tsv")
